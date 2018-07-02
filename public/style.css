@@ -1,0 +1,35 @@
+body {
+  padding: 50px;
+  background-color: gainsboro;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.day {
+  width: 60px;
+  height: 45px;
+  background-color: rgb(219, 174, 255);
+  border-radius: 10%;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.day:empty {
+  background-color: gray;
+}
+
+th.th-month {
+  font-size: 30px;
+  color: rgb(89, 4, 168);
+}
+td.td-day {
+  vertical-align: top;
+}
+
+.month {
+  font-weight: bold;
+}
+
+p {
+  font-size: 30px;
+  margin: 0px;
+}
