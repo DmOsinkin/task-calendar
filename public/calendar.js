@@ -1,3 +1,6 @@
+$("#right-title").append("Список задач");
+$("#left-title").append("Календарь");
+
 function createCalendar(id, year, month) {
     var elem = document.getElementById(id);
 
@@ -44,3 +47,15 @@ function getDay(date) { // получить номер дня недели, от
     return day - 1;
 }
 
+var tasks = {};
+
+$.get('/api', data => {
+    data.forEach(task => {
+        $("#task-list").append(
+            "<li class=\"task\" id=\"" + task["_id"] + "\">" +
+            task["title"] +
+            "<hr>" +
+            task["description"] +
+            "</li>");
+    });
+});
