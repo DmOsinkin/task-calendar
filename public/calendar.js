@@ -1,13 +1,37 @@
-$("#right-title").append("Список задач");
-$("#left-title").append("Календарь");
+var months = ['Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+];
 
-function createCalendar(id, year, month) {
-    var elem = document.getElementById(id);
+var htmlMonths = {};
+
+for (let index = 0; index < months.length; index++) {
+    htmlMonths[months[index]] = createCalendar(2018, index + 1);
+};
+
+for (let index = 0; index < months.length; index++) {
+    $("#calendar").append(htmlMonths[months[index]]);
+
+}
+
+
+
+function createCalendar(year, month) {
+    //var elem = document.getElementById(id);
 
     var mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
     var d = new Date(year, mon);
-
-    var table = '<table><tr><th class="th-month">пн</th class="th-month"><th class="th-month">вт</th class="th-month"><th class="th-month">ср</th class="th-month"><th class="th-month">чт</th class="th-month"><th class="th-month">пт</th class="th-month"><th class="th-month">сб</th class="th-month"><th class="th-month">вс</th class="th-month"></tr><tr>';
+    var table = "<div class=\"month\"><p>" + months[mon] + "</p>";
+    table += '<table class=\"month-table\"><tr><th class="th-month">пн</th class="th-month"><th class="th-month">вт</th class="th-month"><th class="th-month">ср</th class="th-month"><th class="th-month">чт</th class="th-month"><th class="th-month">пт</th class="th-month"><th class="th-month">сб</th class="th-month"><th class="th-month">вс</th class="th-month"></tr><tr>';
 
     // заполнить первый ряд от понедельника
     // и до дня, с которого начинается месяц
@@ -35,10 +59,12 @@ function createCalendar(id, year, month) {
     }
 
     // закрыть таблицу
-    table += '</tr></table>';
+    table += '</tr></table></div>';
 
     // только одно присваивание innerHTML
-    elem.innerHTML = table;
+    //elem.innerHTML = table;
+
+    return table;
 }
 
 function getDay(date) { // получить номер дня недели, от 0(пн) до 6(вс)
@@ -46,16 +72,3 @@ function getDay(date) { // получить номер дня недели, от
     if (day == 0) day = 7;
     return day - 1;
 }
-
-var tasks = {};
-
-$.get('/api', data => {
-    data.forEach(task => {
-        $("#task-list").append(
-            "<li class=\"task\" id=\"" + task["_id"] + "\">" +
-            task["title"] +
-            "<hr>" +
-            task["description"] +
-            "</li>");
-    });
-});

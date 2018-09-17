@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Календарь задач</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="public/style.css" />
     <script src="public/js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="public/js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="public/calendar.js"></script>
+    <script language="javascript" src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="public/style.css" />
 </head>
 <header>
     <h1>Календарь задач</h1>
@@ -18,87 +19,34 @@
 <body>
     <div id="leftmenu">
         <h1 id="left-title"></h1>
-        <table>
-            <tr>
-                <td class="td-day">
-                    <p>Январь</p>
-                    <div class="month" id="month1"></div>
-                </td>
-                <td class="td-day">
-                    <p>Февраль</p>
-                    <div class="month" id="month2"></div>
-                </td>
-                <td class="td-day">
-                    <p>Март</p>
-                    <div class="month" id="month3"></div>
-                </td>
-                <td class="td-day">
-                    <p>Апрель</p>
-                    <div class="month" id="month4"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="td-day">
-                    <p>Май</p>
-                    <div class="month" id="month6"></div>
-                </td>
-                <td class="td-day">
-                    <p>Июнь</p>
-                    <div class="month" id="month5"></div>
-                </td>
-                <td class="td-day">
-                    <p>Июль</p>
-                    <div class="month" id="month7"></div>
-                </td>
-                <td class="td-day">
-                    <p>Август</p>
-                    <div class="month" id="month8"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="td-day">
-                    <p>Сентябрь</p>
-                    <div class="month" id="month9"></div>
-                </td>
-                <td class="td-day">
-                    <p>Октябрь</p>
-                    <div class="month" id="month10"></div>
-                </td>
-                <td class="td-day">
-                    <p>Ноябрь</p>
-                    <div class="month" id="month11"></div>
-                </td>
-                <td class="td-day">
-                    <p>Декабрь</p>
-                    <div class="month" id="month12"></div>
-                </td>
-            </tr>
-        </table>
-        <script>
-            createCalendar("month1", (new Date()).getUTCFullYear(), 1);
-            createCalendar("month2", (new Date()).getUTCFullYear(), 2);
-            createCalendar("month3", (new Date()).getUTCFullYear(), 3);
-            createCalendar("month4", (new Date()).getUTCFullYear(), 4);
-            createCalendar("month5", (new Date()).getUTCFullYear(), 5);
-            createCalendar("month6", (new Date()).getUTCFullYear(), 6);
-            createCalendar("month7", (new Date()).getUTCFullYear(), 7);
-            createCalendar("month8", (new Date()).getUTCFullYear(), 8);
-            createCalendar("month9", (new Date()).getUTCFullYear(), 9);
-            createCalendar("month10", (new Date()).getUTCFullYear(), 10);
-            createCalendar("month11", (new Date()).getUTCFullYear(), 11);
-            createCalendar("month12", (new Date()).getUTCFullYear(), 12);
-        </script>
+        <div id="calendar">
+        </div>
     </div>
 
     <div id="rightmenu">
         <h1 id="right-title"></h1>
-        <ul id="task-list">
+        <form class="form-horizontal" id="create-task-form">
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="title">Название задачи: </label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Новая задача">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="description">Описание задачи: </label>
+                <textarea class="form-control" name="description" id="description" placeholder="Описание задачи"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="start_date">Время создания: </label>
+                <input type="datetime-local" class="form-control" name="start_date" id="start_date">
+            </div>
+            <button type="submit" class="btn btn-success">Готово</button>
+        </form>
 
+        <ul id="task-list">
         </ul>
     </div>
 
 </body>
-
 <script src="public/calendar.js"></script>
+<script src="public/js/main.js"></script>
 
 </html>

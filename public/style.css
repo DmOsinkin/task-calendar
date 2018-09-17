@@ -7,30 +7,44 @@ header {
   justify-content: center;
   align-items: center;
   background-color: crimson;
-  height: 56px;
+  height: 70px;
   color: white;
   margin: -8px;
   margin-bottom: 0px;
 }
 
+
+#calendar {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: inherit;
+}
+
+
+table.month-table {
+  margin: 0%;
+  padding: 0%;
+}
+
 #rightmenu {
   float: right;
-  width: 50%;
+  width: 40%;
   margin: 0px;
   overflow: auto;
-  height: 1070px;
+  height: 800px;
 }
 
 ul {
+  padding: 0%;
   list-style: none;
 }
 
 #leftmenu {
   float: left;
-  width: 50%;
+  width: 60%;
   margin: 0px;
-  overflow: auto;
-  height: 1070px;
+  height: 800px;
 }
 
 hr {
@@ -55,21 +69,22 @@ li.task {
   border-radius: 4px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(138, 138, 138, 0.5);
+  word-wrap: break-word;
 }
 
 body {
-  padding: 50px;
   background-color: rgb(236, 236, 236);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .day {
-  width: 60px;
-  height: 45px;
-  background-color: rgb(219, 174, 255);
+  width: 40px;
+  height: 30px;
+  background-color: white;
   border-radius: 10%;
   border-style: solid;
   border-width: 2px;
+
 }
 
 .day:empty {
@@ -78,7 +93,7 @@ body {
 
 th.th-month {
   font-size: 30px;
-  color: rgb(89, 4, 168);
+  color: rgb(168, 4, 4);
 }
 
 td.td-day {
@@ -86,10 +101,15 @@ td.td-day {
 }
 
 .month {
-  font-weight: bold;
+  padding: 2px;
+  border-width: 1px;
+  border-color: brown;
+  border-style: solid;
+  margin: 10px;
+  border-radius: 4px;
 }
 
 p {
-  font-size: 30px;
+  font-size: 22px;
   margin: 0px;
 }
