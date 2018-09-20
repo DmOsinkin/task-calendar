@@ -17,36 +17,43 @@
 </header>
 
 <body>
-    <div id="leftmenu">
-        <h1 id="left-title"></h1>
-        <div id="calendar">
+    <div id="main-div">
+        <div id="leftmenu">
+            <h2 id="left-title"></h2>
+            <div id="calendar">
+            </div>
+        </div>
+
+        <div id="rightmenu">
+            <h2 id="right-title"></h2>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapse-form" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                Создать задачу
+            </a>
+            <div class="collapse" id="collapse-form">
+                <form class="form-horizontal" id="create-task-form">
+                    <div class="form-group">
+                        <label class="control-label col-sm-10" for="title">Название задачи: </label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Новая задача">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-10" for="description">Описание задачи: </label>
+                        <textarea class="form-control" name="description" id="description" placeholder="Описание задачи"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-10" for="start_date">Время создания: </label>
+                        <input type="datetime-local" class="form-control" name="start_date" id="start_date">
+                    </div>
+                    <button type="button" class="btn btn-success" id="send-button">Готово</button>
+                </form>
+            </div>
+            <ul id="task-list">
+            </ul>
         </div>
     </div>
-
-    <div id="rightmenu">
-        <h1 id="right-title"></h1>
-        <form class="form-horizontal" id="create-task-form">
-            <div class="form-group">
-                <label class="control-label col-sm-5" for="title">Название задачи: </label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Новая задача">
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-5" for="description">Описание задачи: </label>
-                <textarea class="form-control" name="description" id="description" placeholder="Описание задачи"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-5" for="start_date">Время создания: </label>
-                <input type="datetime-local" class="form-control" name="start_date" id="start_date">
-            </div>
-            <button type="submit" class="btn btn-success">Готово</button>
-        </form>
-
-        <ul id="task-list">
-        </ul>
-    </div>
-
 </body>
-<script src="public/calendar.js"></script>
+<script src="public/js/utils.js"></script>
+<script src="public/js/calendar.js"></script>
 <script src="public/js/main.js"></script>
 
 </html>

@@ -2,7 +2,7 @@
   "name": "task-calendar",
   "version": "0.0.0",
   "scripts": {
-    "start": "nodemon ./bin/www --watch ./"
+    "start": "nodemon ./bin/www --watch ./*"
   },
   "private": true,
   "dependencies": {
