@@ -27,8 +27,6 @@ var monthsDate = ['января',
     'декабря'
 ];
 
-var htmlMonths = {};
-
 function createCalendar(year, month) {
     //var elem = document.getElementById(id);
 
@@ -77,27 +75,40 @@ function getDay(date) { // получить номер дня недели, от
     return day - 1;
 }
 
-
 function updateData() {
     $("#task-list").empty();
+
     $.get('/api', data => {
         data.forEach(task => {
             $("#task-list").append(getTask(task));
-            var startDate = new Date(task.start_date);
-            $("#calendar").find('[data-month-number="' + startDate.getMonth() + '"]')
-                .find('[data-date-number="' + startDate.getDate() + '"]').css("background-color", "rgb(72, 255, 0)");
+            var endDate = new Date(task.end_date);
+            $("#calendar").find('[data-month-number="' + endDate.getMonth() + '"]')
+                .find('[data-date-number="' + endDate.getDate() + '"]').css("background-color", "red");
         });
     });
+    initCalendar();
 }
 
-
 function getTask(task) {
-    var startDate = new Date(task.start_date);
+    var endDate = new Date(task.end_date);
     return '<li class="task" id="' + task._id + '">' +
         task.title +
-        '<br><em class="em-date">' + 'Время создания: ' + startDate.toLocaleDateString() + '</em>' +
+        '<br><em class="em-date">' + 'Дата завершения: ' + endDate.toLocaleDateString() + '</em>' +
         '<hr>' +
         task.description +
         '<br><button type="button" class="btn btn-danger btn-delete-task" data-id="' + task._id + '">Удалить</button>' +
         '</li>';
+}
+
+function initCalendar() {
+    $("#calendar").empty();
+    var htmlMonths = {};
+    // TODO: это недоразумение из скобок
+    for (let index = 0; index < months.length; index++) {
+        htmlMonths[months[index]] = createCalendar(2018, index + 1);
+    }
+
+    for (let index = 0; index < months.length; index++) {
+        $("#calendar").append(htmlMonths[months[index]]);
+    }
 }

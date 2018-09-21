@@ -3,7 +3,7 @@ $("#left-title").append("Календарь");
 
 updateData();
 
-$("#send-button").click(function () {
+$("body").on("click", "#send-button", function () {
     var form = $("#create-task-form");
 
     $.ajax({

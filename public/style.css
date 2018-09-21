@@ -95,6 +95,7 @@ li.task {
   padding: 10px;
   box-shadow: 0 0 10px rgba(138, 138, 138, 0.5);
   word-wrap: break-word;
+  white-space: pre-line;
 }
 
 #create-task-form {
