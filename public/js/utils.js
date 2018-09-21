@@ -82,8 +82,12 @@ function updateData() {
         data.forEach(task => {
             $("#task-list").append(getTask(task));
             var endDate = new Date(task.end_date);
-            $("#calendar").find('[data-month-number="' + endDate.getMonth() + '"]')
-                .find('[data-date-number="' + endDate.getDate() + '"]').css("background-color", "red");
+            var dayWithTask = $("#calendar").find('[data-month-number="' + endDate.getMonth() + '"]')
+                .find('[data-date-number="' + endDate.getDate() + '"]');
+            dayWithTask.css({
+                "background-color": "red",
+                "color": "white"
+            });
         });
     });
     initCalendar();
