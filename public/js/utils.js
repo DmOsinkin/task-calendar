@@ -26,6 +26,7 @@ var monthsDate = ['января',
     'ноября',
     'декабря'
 ];
+
 /**
  * получить номер дня недели, от 0(пн) до 6(вс)
  * @param {Date} date 
@@ -54,7 +55,6 @@ function updateData() {
                     "border-color": "rgb(30, 255, 0)"
                 });
 
-
             var dayWithTask = $("#calendar")
                 .find('[data-month-number="' + endDate.getMonth() + '"]')
                 .find('[data-date-number="' + endDate.getDate() + '"]');
@@ -74,17 +74,20 @@ function updateData() {
 }
 
 /**
- * Получить задачу в виде HTML
- * @param {JSON} task
+ * Получить html-элемент, содержащий информацию о задаче
+ * @param {JSON} task задача, которую необходимо завернуть в html
+ * @returns {String} html-элемент, содержащий информацию о задаче
  */
 function getTask(task) {
     var endDate = new Date(task.end_date);
     return '<li class="task" id="' + task._id + '">' +
-        task.title +
+        '<b>' + task.title + '</b>' +
         '<br><em class="em-date">' + 'Дата завершения: ' + endDate.toLocaleDateString() + '</em>' +
         '<hr>' +
         task.description +
-        '<br><button type="button" class="btn btn-danger btn-delete-task" data-id="' + task._id + '">Удалить</button>' +
+        '<br><div class="flex-container">'+
+        '<button type="button" class="btn btn-danger btn-delete-task" data-id="' + task._id + '">Удалить</button>' +
+        '<button type="button" class="btn btn-primary btn-update-task" data-id="' + task._id + '">Редактировать</button></div>' +
         '</li>';
 }
 
