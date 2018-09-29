@@ -55,3 +55,21 @@ $("body").on("click", "#btn-update-send", function () {
         }
     });
 });
+
+$("body").on("click", ".day", function () {
+    console.log($(this).data("date"));
+    var date = new Date($(this).data("date"));
+
+    console.log(date);
+    $.ajax({
+        type: "GET",
+        url: "/api/" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate(),
+        success: function (data) {
+            showFoundedData(data);
+        }
+    });
+});
+
+$("body").on("click", "#btn-load-all", function () {
+    updateData();
+});

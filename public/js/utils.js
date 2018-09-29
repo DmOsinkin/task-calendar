@@ -38,12 +38,12 @@ function getDay(date) {
 }
 
 /**
- * Обновить данные. Включает в себя перерисовку и повторную закгрузку данных в списке задач и календаре.
+ * Обновить данные. Включает в себя перерисовку и повторную загрузку данных в списке задач и календаре.
  */
 function updateData() {
     $("#task-list").empty();
 
-    $.get('/api', data => {
+    $.get('/api/', data => {
         data.forEach(task => {
             $("#task-list").append(getTask(task));
             todayDate = new Date();
@@ -73,6 +73,13 @@ function updateData() {
     initCalendar();
 }
 
+function showFoundedData(data) {
+    $("#task-list").empty();
+    data.forEach(task => {
+        $("#task-list").append(getTask(task));
+    });
+}
+
 /**
  * Получить html-элемент, содержащий информацию о задаче
  * @param {JSON} task задача, которую необходимо завернуть в html
@@ -85,7 +92,7 @@ function getTask(task) {
         '<br><em class="em-date">' + 'Дата завершения: ' + endDate.toLocaleDateString() + '</em>' +
         '<hr>' +
         task.description +
-        '<br><div class="flex-container">'+
+        '<br><div class="flex-container">' +
         '<button type="button" class="btn btn-danger btn-delete-task" data-id="' + task._id + '">Удалить</button>' +
         '<button type="button" class="btn btn-primary btn-update-task" data-id="' + task._id + '">Редактировать</button></div>' +
         '</li>';
@@ -112,7 +119,7 @@ function initCalendar() {
 
         // ячейки календаря с датами
         while (d.getMonth() == mon) {
-            table += '<td><div class="day" data-date-number=' + d.getDate() + '>' + d.getDate() + '</div></td>';
+            table += '<td><div class="day" data-date-number=' + d.getDate() + ' data-date=' + d.toISOString() + '>' + d.getDate() + '</div></td>';
 
             if (getDay(d) % 7 == 6) { // вс, последний день - перевод строки
                 table += '</tr><tr>';

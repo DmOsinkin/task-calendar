@@ -97,6 +97,11 @@ li.task {
   border-style: solid;
   border-width: 2px;
   border-color: black;
+  cursor: pointer;
+}
+
+.day:hover {
+  box-shadow: 0 0 5px rgb(17, 0, 255);
 }
 
 .day:empty {
@@ -138,6 +143,7 @@ p {
 .btn-save-task .btn-cancel-task {
   visibility: hidden;
 }
+
 /* 
 .flex-container {
   display: flex;
