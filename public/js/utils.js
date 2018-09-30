@@ -107,7 +107,7 @@ function initCalendar() {
 
         var mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
         var d = new Date(year, mon);
-        var table = "<div class=\"month\"><p>" + months[mon] + "</p>";
+        var table = "<div class=\"month\"><div class=\"p-month\" data-month= " + mon + " data-date=" + d.toISOString() + ">" + months[mon] + "</div>";
         table += '<table class=\"month-table\" data-month-number=' + mon + '><tr><th class="th-month">пн</th class="th-month"><th class="th-month">вт</th class="th-month"><th class="th-month">ср</th class="th-month"><th class="th-month">чт</th class="th-month"><th class="th-month">пт</th class="th-month"><th class="th-month">сб</th class="th-month"><th class="th-month">вс</th class="th-month"></tr><tr>';
 
         // заполнить первый ряд от понедельника

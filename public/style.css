@@ -100,6 +100,19 @@ li.task {
   cursor: pointer;
 }
 
+.p-month:hover {
+  box-shadow: 0 0 2px rgb(255, 0, 0);
+}
+
+.p-month {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 5px;
+  padding: 0px;
+  width: fit-content;
+  height: fit-content;
+}
+
 .day:hover {
   box-shadow: 0 0 5px rgb(17, 0, 255);
 }
@@ -121,18 +134,12 @@ td.td-day {
 }
 
 .month {
-  padding: 2px;
+  padding: 0px;
   border-width: 1px;
   border-color: brown;
   border-style: solid;
-  margin: 10px;
+  margin: 5px;
   border-radius: 4px;
-}
-
-p {
-  font-size: 22px;
-  margin: 0px;
-  padding: 0%;
 }
 
 .btn-delete-task .btn-update-task .btn-save-task .btn-cancel-task {

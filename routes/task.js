@@ -45,6 +45,35 @@ router.get('/:year/:month/:day', function (req, res, next) {
   });
 });
 
+/* GET BOOKS BY MONTH */
+router.get('/:year/:month/', function (req, res, next) {
+  var startMonthDate = new Date(req.params.year, req.params.month); // this is the starting date that looks like ISODate("2014-10-03T04:00:00.188Z")
+  console.log("startMonthDate: " + startMonthDate);
+  startMonthDate.setSeconds(0);
+  startMonthDate.setHours(0);
+  startMonthDate.setMinutes(0);
+  startMonthDate.setDate(1);
+
+  var endMonthDate = new Date(startMonthDate);
+  endMonthDate.setHours(23);
+  endMonthDate.setMinutes(59);
+  endMonthDate.setSeconds(59);
+  endMonthDate.setDate(30);
+
+  var query = {
+    end_date: {
+      $gte: startMonthDate,
+      $lte: endMonthDate
+    }
+  };
+
+  Task.find(query, function (err, products) {
+    if (err) return next(err);
+    console.log("==============================\n" + products + "\n==============================");
+    res.json(products);
+  });
+});
+
 /* SAVE BOOK */
 router.post('/', function (req, res, next) {
   Task.create(req.body, function (err, post) {
