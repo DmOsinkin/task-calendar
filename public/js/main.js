@@ -45,7 +45,6 @@ $("body").on("click", ".btn-update-task", function () {
 
 $("body").on("click", "#btn-update-send", function () {
     var form = $("#update-task-form");
-    console.log();
     $.ajax({
         type: "PUT",
         url: "/api/" + $(this).data("id"),
@@ -57,10 +56,7 @@ $("body").on("click", "#btn-update-send", function () {
 });
 
 $("body").on("click", ".day", function () {
-    console.log($(this).data("date"));
     var date = new Date($(this).data("date"));
-
-    console.log(date);
     $.ajax({
         type: "GET",
         url: "/api/" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate(),
@@ -71,10 +67,7 @@ $("body").on("click", ".day", function () {
 });
 
 $("body").on("click", ".day", function () {
-    console.log($(this).data("date"));
     var date = new Date($(this).data("date"));
-
-    console.log(date);
     $.ajax({
         type: "GET",
         url: "/api/" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate(),
