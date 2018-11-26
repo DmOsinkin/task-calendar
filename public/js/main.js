@@ -1,6 +1,9 @@
 $("#right-title").append("Список задач");
 $("#left-title").append("Календарь");
 
+Cookies.set("currentYear", (new Date()).getFullYear());
+console.log(Cookies.get("currentYear"));
+
 updateData();
 
 $("body").on("click", "#send-button", function () {
@@ -93,4 +96,16 @@ $("body").on("click", ".p-month", function () {
 
 $("body").on("click", "#btn-load-all", function () {
     updateData();
+});
+
+$("body").on("click", "#btn-next-year", function () {
+    Cookies.set('currentYear', Cookies.get('currentYear') * 1 + 1);
+    document.querySelector("#current-year-title").innerHTML = Cookies.get('currentYear');
+    updateData(Cookies.get('currentYear'));
+});
+
+$("body").on("click", "#btn-previous-year", function () {
+    Cookies.set('currentYear', Cookies.get('currentYear') * 1 - 1);
+    document.querySelector("#current-year-title").innerHTML = Cookies.get('currentYear');
+    updateData(Cookies.get('currentYear'));
 });

@@ -38,39 +38,50 @@ function getDay(date) {
 }
 
 /**
- * Обновить данные. Включает в себя перерисовку и повторную загрузку данных в списке задач и календаре.
+ * Получить данные для конкретного года. 
+ * Включает в себя перерисовку и повторную загрузку данных в списке задач и календаре.
+ * @param {any} year год, за который необходимо получить данные.
  */
-function updateData() {
+function updateData(year = Cookies.get("currentYear")) {
+    document.getElementById("current-year-title").innerHTML = year;
     $("#task-list").empty();
 
     $.get('/api/', data => {
         data.forEach(task => {
             $("#task-list").append(getTask(task));
-            todayDate = new Date();
+            currentDate = new Date();
             var endDate = new Date(task.end_date);
-
-            $("#calendar").find('[data-month-number="' + todayDate.getMonth() + '"]')
-                .find('[data-date-number="' + todayDate.getDate() + '"]')
-                .css({
-                    "border-color": "rgb(30, 255, 0)"
-                });
-
-            var dayWithTask = $("#calendar")
-                .find('[data-month-number="' + endDate.getMonth() + '"]')
-                .find('[data-date-number="' + endDate.getDate() + '"]');
-            dayWithTask.css({
-                "background-color": "red",
-                "color": "white"
-            });
-
-            if (todayDate.getMonth() == endDate.getMonth()) {
-                if (endDate.getDate() == todayDate.getDate() || endDate.getDate() == todayDate.getDate() + 1) {
-                    blink(dayWithTask);
+            if (year == currentDate.getFullYear()) {
+                // Выделяем сегодняшний день
+                $("#calendar").find('[data-month-number="' + currentDate.getMonth() + '"]')
+                    .find('[data-date-number="' + currentDate.getDate() + '"]')
+                    .css({
+                        "border-color": "rgb(30, 255, 0)"
+                    });
+                // Заставляем мигать сегодняшний и/или завтрашний день, 
+                // если в соответствующий день есть задача
+                if (currentDate.getMonth() == endDate.getMonth()) {
+                    if (endDate.getDate() == currentDate.getDate() || endDate.getDate() == currentDate.getDate() + 1) {
+                        blink(dayWithTask);
+                    }
                 }
             }
+
+            if (year == endDate.getFullYear()) {
+                // закрашиваем красным цветом дни, содержащие задачи */
+                var dayWithTask = $("#calendar")
+                    .find('[data-month-number="' + endDate.getMonth() + '"]')
+                    .find('[data-date-number="' + endDate.getDate() + '"]');
+                dayWithTask.css({
+                    "background-color": "red",
+                    "color": "white"
+                });
+            }
+
+
         });
     });
-    initCalendar();
+    initCalendar(year);
 }
 
 function showFoundedData(data) {
@@ -101,12 +112,12 @@ function getTask(task) {
 /**
  * Создать html-скелет календаря и заполнить его днями. 
  */
-function initCalendar() {
-    function createCalendarHTML(year, month) {
+function initCalendar(year) {
+    function createCalendarHTML(neededYear, month) {
         //var elem = document.getElementById(id);
 
         var mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
-        var d = new Date(year, mon);
+        var d = new Date(neededYear, mon);
         var table = "<div class=\"month\"><div class=\"p-month\" data-month= " + mon + " data-date=" + d.toISOString() + ">" + months[mon] + "</div>";
         table += '<table class=\"month-table\" data-month-number=' + mon + '><tr><th class="th-month">пн</th class="th-month"><th class="th-month">вт</th class="th-month"><th class="th-month">ср</th class="th-month"><th class="th-month">чт</th class="th-month"><th class="th-month">пт</th class="th-month"><th class="th-month">сб</th class="th-month"><th class="th-month">вс</th class="th-month"></tr><tr>';
 
@@ -148,7 +159,7 @@ function initCalendar() {
     var htmlMonths = {};
     // TODO: это недоразумение из скобок
     for (let index = 0; index < months.length; index++) {
-        htmlMonths[months[index]] = createCalendarHTML(2018, index + 1);
+        htmlMonths[months[index]] = createCalendarHTML(year, index + 1);
     }
 
     for (let index = 0; index < months.length; index++) {

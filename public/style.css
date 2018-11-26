@@ -160,3 +160,33 @@ td.td-day {
 em.em-date {
   font-size: 12px;
 }
+
+#year-slider {
+  display: grid;
+  grid-template-columns: 4fr auto 4fr;
+}
+
+#current-year-title {
+  text-align: center;
+  font-size: 25px;
+}
+
+.btn-arrow {
+  background-color: crimson;
+  color: white;
+  border-width: 2px;
+  border-color: crimson;
+  border-style: solid;
+  border-radius: 4px;
+  display: table;
+  font-size: 15pt;
+  cursor: pointer;
+}
+
+#btn-previous-year {
+  margin: 0 10px 0 auto;
+}
+
+#btn-next-year {
+  margin: 0 auto 0 10px;
+}
