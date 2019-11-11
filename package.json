@@ -10,7 +10,7 @@
     "cookie-parser": "~1.4.3",
     "express": "~4.16.0",
     "js-cookie": "^2.2.0",
-    "mongoose": "^5.2.14",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "npm": "^6.4.1"
   }
